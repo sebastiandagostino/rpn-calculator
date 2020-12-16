@@ -7,8 +7,8 @@ import com.sebastiandagostino.rpn.domain.Operator
 class ReversePolishNotationService(private val expression: Expression = Expression(),
                                    private val history: History = History()) {
 
-    fun pushToStack(symbol: String) {
-        expression.push(symbol)
+    fun pushToStack(symbol: String, position: Int? = null) {
+        expression.push(symbol, position)
     }
 
     fun calculate() {

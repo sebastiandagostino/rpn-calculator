@@ -88,6 +88,13 @@ stack: 1 2 3 4 5
 * * * *
 stack: 120
 ```
+### Example 8
+```
+1 2 3 * 5 + * * 6 5
+operator * (position: 15): insucient parameters
+stack: 11
+(the 6 and 5 were not pushed on to the stack due to the previous error)
+```
 ## Prerequisites
 
 Java JDK 8 and Maven are required to run the project.

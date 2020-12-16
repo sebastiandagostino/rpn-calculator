@@ -15,7 +15,9 @@ class LineParserServiceTest {
     fun testSplitTokens() {
         val list = LineParserService().splitTokens("1 2")
         assertEquals(2, list.size)
-        assertEquals("1", list.first())
-        assertEquals("2", list.last())
+        assertEquals("1", list.first().first)
+        assertEquals(1, list.first().second)
+        assertEquals("2", list.last().first)
+        assertEquals(3, list.last().second)
     }
 }

@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
         }
         try {
             lineParser.splitTokens(line).forEach{
-                calculator.pushToStack(it)
+                calculator.pushToStack(it.first, it.second)
                 calculator.calculate()
             }
         } catch (exception: RuntimeException) {

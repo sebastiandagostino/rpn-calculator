@@ -5,7 +5,7 @@ import com.sebastiandagostino.rpn.domain.exception.InsufficientParametersExcepti
 abstract class UnaryOperator(operator: String): Operator(operator) {
     override fun execute(expression: Expression, history: History) {
         if (!expression.isTopNumeral()) {
-            throw InsufficientParametersException(operator)
+            throw InsufficientParametersException(operator, position)
         }
         val numeral = expression.pop()
         expression.push(execute(numeral as Numeral))

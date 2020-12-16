@@ -2,8 +2,8 @@ package com.sebastiandagostino.rpn.domain
 
 class Expression(private val symbols: MutableList<Symbol> = mutableListOf()) {
 
-    fun push(symbol: String) {
-        symbols.add(if (Numeral.isNumeral(symbol)) Numeral(symbol) else Operators.build(symbol))
+    fun push(symbol: String, position: Int?) {
+        symbols.add(if (Numeral.isNumeral(symbol)) Numeral(symbol, position) else Operators.build(symbol, position))
     }
 
     fun push(symbol: Symbol) {

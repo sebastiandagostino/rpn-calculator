@@ -1,6 +1,6 @@
 package com.sebastiandagostino.rpn.domain
 
-interface Symbol {
+abstract class Symbol(var position: Int?) {
 
-    fun isNumeral(): Boolean
+    abstract fun isNumeral(): Boolean
 }

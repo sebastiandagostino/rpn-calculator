@@ -3,8 +3,8 @@ package com.sebastiandagostino.rpn.domain
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-class Numeral(var value: BigDecimal) : Symbol {
-    constructor(symbol: String) : this(symbol.toBigDecimal())
+class Numeral(var value: BigDecimal, position: Int? = null): Symbol(position) {
+    constructor(symbol: String, position: Int?): this(symbol.toBigDecimal(), position)
 
     init {
         value = value.setScale(PRECISION, RoundingMode.HALF_UP)

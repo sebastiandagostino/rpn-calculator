@@ -16,9 +16,11 @@ enum class Operators(val operator: Operator) {
     SQUARE_ROOT(SquareRootOperator("sqrt"));
 
     companion object {
-        fun build(operator: String): Operator {
+        fun build(operator: String, position: Int? = null): Operator {
             try {
-                return values().first { it.operator.operator.toLowerCase() == operator.toLowerCase() }.operator
+                val result = values().first { it.operator.operator.toLowerCase() == operator.toLowerCase() }.operator
+                result.position = position
+                return result
             } catch (e: RuntimeException) {
                 throw NonExistentOperatorException(operator)
             }
@@ -26,7 +28,7 @@ enum class Operators(val operator: Operator) {
     }
 }
 
-class UndoOperator(operator: String) : Operator(operator) {
+class UndoOperator(operator: String): Operator(operator) {
     override fun execute(expression: Expression, history: History) {
         if (expression.isEmpty()) {
             return
@@ -39,14 +41,14 @@ class UndoOperator(operator: String) : Operator(operator) {
     }
 }
 
-class ClearOperator(operator: String) : Operator(operator) {
+class ClearOperator(operator: String): Operator(operator) {
     override fun execute(expression: Expression, history: History) {
         expression.clear()
         history.clear()
     }
 }
 
-class AdditionOperator(operator: String) : BinaryOperator(operator) {
+class AdditionOperator(operator: String): BinaryOperator(operator) {
     override fun execute(numeral1: Numeral, numeral2: Numeral): Numeral {
         return Numeral(numeral1.value + numeral2.value)
     }
@@ -58,7 +60,7 @@ class SubtractionOperator(operator: String): BinaryOperator(operator) {
     }
 }
 
-class MultiplicationOperator(operator: String) : BinaryOperator(operator) {
+class MultiplicationOperator(operator: String): BinaryOperator(operator) {
     override fun execute(numeral1: Numeral, numeral2: Numeral): Numeral {
         return Numeral(numeral1.value * numeral2.value)
     }
